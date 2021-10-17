@@ -1,12 +1,15 @@
 #
-import jsonlines, json
-import zipfile
+import jsonlines, json, zipfile, os.path
+
+extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
 
 if __name__ == "__main__":
-    with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
-        zip_ref.extractall(".")
 
-    with jsonlines.open('opendata.jsonl') as reader:
+    if not os.path.exists(extracted_name):
+        with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
+            zip_ref.extractall(".")
+
+    with jsonlines.open(extracted_name) as reader:
     #data = json.load(json_file)
         totallist=[]
         list=[]
