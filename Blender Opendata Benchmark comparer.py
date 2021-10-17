@@ -4,7 +4,6 @@ import jsonlines, json, zipfile, os.path
 extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
 
 if __name__ == "__main__":
-
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
             zip_ref.extractall(".")
@@ -30,11 +29,6 @@ if __name__ == "__main__":
 
                         list.append(sublist)
                         sublist=[]
-
-
-
-
-
 
             except KeyError:
                     error_count += 1
