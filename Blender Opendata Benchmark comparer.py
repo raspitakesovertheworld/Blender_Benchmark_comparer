@@ -1,5 +1,5 @@
 #
-import jsonlines, json, zipfile, os.path, collections
+import jsonlines, json, zipfile, os.path, collections, operator
 
 extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
 
@@ -52,10 +52,12 @@ if __name__ == "__main__":
     # at this point c contains: {('a', 'b'): [1, 5], ('b', 'c'): [2]}
     #print(c)
     result = [(elm1,sum(v)//len(v)) for elm1,v in c.items()]
-    print(result)
 
+
+    result_sorted = sorted(result, key=operator.itemgetter(1), reverse=False)
+    #print(result)
     i=1
-    for element in result:
+    for element in result_sorted:
         print(str(i), element)
         i=i+1
 
