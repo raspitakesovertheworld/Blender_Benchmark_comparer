@@ -1,5 +1,5 @@
 #
-import jsonlines, json, zipfile, os.path
+import jsonlines, json, zipfile, os.path, collections
 
 extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
 
@@ -11,7 +11,7 @@ if __name__ == "__main__":
     with jsonlines.open(extracted_name) as reader:
     #data = json.load(json_file)
         totallist=[]
-        list=[]
+        list_pre=[]
         sublist=[]
         error_count=0
         for element in reader:
@@ -27,7 +27,7 @@ if __name__ == "__main__":
                         sublist.append(element["data"][0]["stats"]["total_render_time"])
 
 
-                        list.append(sublist)
+                        list_pre.append(sublist)
                         sublist=[]
 
             except KeyError:
@@ -36,11 +36,26 @@ if __name__ == "__main__":
 
     print(error_count)
 
-    list.sort()
+    list_pre.sort()
     #form = json.dumps(list, indent=2)
     #print(form)
+
+
+
+
+    c = collections.defaultdict(list)
+
+
+    for elm1,elm2,elm3 in list_pre:
+        c[elm1].append(elm3)
+
+    # at this point c contains: {('a', 'b'): [1, 5], ('b', 'c'): [2]}
+    #print(c)
+    result = [(elm1,sum(v)//len(v)) for elm1,v in c.items()]
+    print(result)
+
     i=1
-    for element in list:
+    for element in result:
         print(str(i), element)
         i=i+1
 
