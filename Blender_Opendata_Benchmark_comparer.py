@@ -1,9 +1,13 @@
-#
-import jsonlines, json, zipfile, os.path, collections, operator
-
-extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
+import jsonlines, 
+#import json 
+import zipfile 
+import os.path 
+import collections 
+import operator
 
 def main():
+    extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
+    
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
             zip_ref.extractall(".")
@@ -25,14 +29,11 @@ def main():
                         sublist.append(element["data"][0]["device_info"]["compute_devices"][0]["name"])
                         sublist.append(element["data"][0]["device_info"]["device_type"])
                         sublist.append(element["data"][0]["stats"]["total_render_time"])
-
-
                         list_pre.append(sublist)
                         sublist=[]
 
             except KeyError:
-                    error_count += 1
-
+                error_count += 1
 
     print(error_count)
 
@@ -41,10 +42,7 @@ def main():
     #print(form)
 
 
-
-
     c = collections.defaultdict(list)
-
 
     for elm1,elm2,elm3 in list_pre:
         c[elm1].append(elm3)
@@ -52,7 +50,6 @@ def main():
     # at this point c contains: {('a', 'b'): [1, 5], ('b', 'c'): [2]}
     #print(c)
     result = [(elm1,sum(v)//len(v)) for elm1,v in c.items()]
-
 
     result_sorted = sorted(result, key=operator.itemgetter(1), reverse=False)
     #print(result)
