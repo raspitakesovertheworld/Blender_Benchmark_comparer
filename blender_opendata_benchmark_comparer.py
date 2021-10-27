@@ -1,9 +1,9 @@
-import jsonlines
 #import json 
 import zipfile 
 import os.path 
 import collections 
 import operator
+import jsonlines
 
 def main():
     extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
@@ -47,8 +47,6 @@ def main():
     for elm1,elm2,elm3 in list_pre:
         c[elm1].append(elm3)
 
-    # at this point c contains: {('a', 'b'): [1, 5], ('b', 'c'): [2]}
-    #print(c)
     result = [(elm1,sum(v)//len(v)) for elm1,v in c.items()]
 
     result_sorted = sorted(result, key=operator.itemgetter(1), reverse=False)
