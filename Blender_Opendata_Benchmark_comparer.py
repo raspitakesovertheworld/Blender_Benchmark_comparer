@@ -1,4 +1,4 @@
-import jsonlines, 
+import jsonlines
 #import json 
 import zipfile 
 import os.path 
