@@ -1,13 +1,12 @@
 #import json 
-import zipfile 
-import os.path 
-import collections 
+import zipfile
+import os.path
+import collections
 import operator
 import jsonlines
 
 def main():
     extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
-    
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
             zip_ref.extractall(".")
