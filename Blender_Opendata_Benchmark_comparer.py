@@ -3,7 +3,7 @@ import jsonlines, json, zipfile, os.path, collections, operator
 
 extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
 
-if __name__ == "__main__":
+def main():
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
             zip_ref.extractall(".")
@@ -60,5 +60,7 @@ if __name__ == "__main__":
     for element in result_sorted:
         print(str(i), element)
         i=i+1
-
+        
+if __name__ == '__main__':
+    main()
 
