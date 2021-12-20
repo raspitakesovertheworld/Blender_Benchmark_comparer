@@ -1,4 +1,6 @@
-#import json 
+#!/usr/bin/python3
+
+#import json
 import zipfile
 import os.path
 import collections
@@ -10,6 +12,18 @@ def main():
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
             zip_ref.extractall(".")
+
+    print("Select List:")
+    print("1. Top 10 GPU")
+    print("2. Top 50 GPU")
+    print("3. Top 100 GPU")
+    input_txt = input("Enter your choice: ")
+    if input_txt == "1":
+        maxcount=10
+    elif input_txt == "2":
+        maxcount = 50
+    elif input_txt == "3":
+        maxcount = 100
 
     with jsonlines.open(extracted_name) as reader:
     #data = json.load(json_file)
@@ -40,7 +54,7 @@ def main():
     #form = json.dumps(list, indent=2)
     #print(form)
 
-
+    #find double entries and calculate average of runtimes
     c = collections.defaultdict(list)
 
     for elm1,elm2,elm3 in list_pre:
@@ -54,7 +68,9 @@ def main():
     for element in result_sorted:
         print(str(i), element)
         i=i+1
-        
+        if i > maxcount:
+            break
+
 if __name__ == '__main__':
     main()
 
