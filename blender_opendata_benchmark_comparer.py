@@ -1,11 +1,12 @@
 #!/usr/bin/python3
 
-#import json
+import json
 import zipfile
 import os.path
 import collections
 import operator
 import jsonlines
+from pprint import pprint
 
 def main():
     extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
@@ -50,9 +51,9 @@ def main():
         if renderdev == "CPU":
             # CPU
             for element in reader:
-            # print(json.dumps(element["data"], indent=4, sort_keys=True))
-            # print(json.dumps(element, indent=4, sort_keys=True))
-            # print(element["data"][0]["scene"]["label"])
+                #print(json.dumps(element["data"], indent=4, sort_keys=True))
+                #print(json.dumps(element, indent=4, sort_keys=True))
+                # print(element["data"][0]["scene"]["label"])
                 try:
                     if element["data"][0]["scene"]["label"] == "pavillon_barcelona":
                         if element["data"][0]["device_info"]["device_type"] == "CPU":
@@ -100,14 +101,27 @@ def main():
     result = [(elm1,sum(v)//len(v)) for elm1,v in c.items()]
 
     result_sorted = sorted(result, key=operator.itemgetter(1), reverse=False)
-    #print(result)
+
     i=1
+    list_ranked = []
     for element in result_sorted:
-        print(str(i), element)
+        list_ranked.append([i,element])
+        #print(str(i), element)
         i=i+1
         if i > maxcount:
             break
+    pprint(list_ranked)
+    print("   ")
+    input_txt = input("Enter comparison point (line number)")
+    #assemble comparison list
 
-if __name__ == '__main__':
+    base_line = list_ranked[int(input_txt)]
+    print(base_line)
+
+    for element in list_ranked:
+        base_line_time = base_line[]
+
+
+    if __name__ == '__main__':
     main()
 
