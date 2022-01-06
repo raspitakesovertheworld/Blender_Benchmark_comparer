@@ -7,6 +7,7 @@ import collections
 import operator
 import jsonlines
 from pprint import pprint
+from tabulate import tabulate
 
 def main():
     extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
@@ -111,17 +112,19 @@ def main():
         if i > maxcount:
             break
     pprint(list_ranked)
-    print("   ")
-    input_txt = input("Enter comparison point (line number)")
-    #assemble comparison list
+    print("-------------------------------------------")
+    print(" ")
+    print("Please select baseline device for comparison of speed")
+    input_txt = input("Enter comparison point (line number):")
 
-    base_line = list_ranked[int(input_txt)]
-    print(base_line)
+    base_line = list_ranked[int(input_txt)-1]
 
+    base_line_time = base_line[1][1]
+    list_formated=[]
     for element in list_ranked:
-        base_line_time = base_line[]
+        list_formated.append([element[0],element[1][0],int(element[1][1]),round(base_line_time/element[1][1], 2)])
+    print (tabulate(list_formated, headers=["Rank", "Device", "Runtime in Seconds", "Times faster than baseline"]))
 
-
-    if __name__ == '__main__':
-    main()
+if __name__ == '__main__':
+     main()
 

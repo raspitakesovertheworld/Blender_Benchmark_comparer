@@ -1,10 +1,27 @@
-This crunches through the blender Benchmark Results (opendata, currently as of
-D20211022 it contains 250'000+ records in JSONLINES format (one record per line))
-and displays more detail than the website does. The need for this analyzer arose through
-only seeing the top 10 best GPUs and CPUs, which is not that useful.
+# Blender Benchmark Comparer
 
-TODO:
-Top 20, top 50, top 200
-Select any combination of AMD GPU, AMD CPU, Intel CPU and Nvidia GPU or all
+by Markus Bawidamann
+<br />
+
+**Blender Benchmark is great!**
+
+Finally a operating system / hardware agnostic real life benchmarking tool based on a real workload.
+
+**BUT...**
+
+the website <br />
+**opendata.blender.org/**
+
+does not show you much and has very little tools to display the 270'000+ benchmarks in a meaningful way.
+There is just a top ten fastest systems, which is not that useful.
+
+The purpose of this tool is to allow you to display and compare the run benchmarks in a more meaningful way.
+
+It displays Top 10, Top 50, Top 100, Top 250, Top 500
+
+The benchmark comparer focuses only on one Blender scene: Pavillion, as it is one of the larger scenes.
+The uncompresssed opendata source file is too large and is therefore not stored on github, but uncompressed locally.
+
+Currently, this is just a python CLI tool, but a GUI is planned.
 
 
