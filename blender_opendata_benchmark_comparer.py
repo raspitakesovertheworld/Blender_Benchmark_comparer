@@ -10,6 +10,7 @@ from pprint import pprint
 from tabulate import tabulate
 
 def main():
+    #opendata is uncompressed too large for github,so it is just uncompressed locally
     extracted_name = "opendata-2021-10-14-062531+0000.jsonl"
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:

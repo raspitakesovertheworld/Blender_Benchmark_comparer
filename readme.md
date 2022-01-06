@@ -22,6 +22,8 @@ It displays Top 10, Top 50, Top 100, Top 250, Top 500
 The benchmark comparer focuses only on one Blender scene: Pavillion, as it is one of the larger scenes.
 The uncompresssed opendata source file is too large and is therefore not stored on github, but uncompressed locally.
 
+You can select which device you want to set at a baseline comparison and see how many times faster or slower other devices are.
+
 Currently, this is just a python CLI tool, but a GUI is planned.
 
 
