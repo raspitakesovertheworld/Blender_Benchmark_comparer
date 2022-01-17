@@ -11,10 +11,10 @@ from tabulate import tabulate
 
 def main():
     #opendata is uncompressed too large for github,so it is just uncompressed locally
-    extracted_name = "opendata-2022-01-17-072501+0100.jsonl"
+    extracted_name = "not_tracked_by_git/opendata-2022-01-17-072501+0100.jsonl"
     if not os.path.exists(extracted_name):
         with zipfile.ZipFile("opendata-latest.zip", 'r') as zip_ref:
-            zip_ref.extractall(".")
+            zip_ref.extractall("not_tracked_by_git/")
     print("Select CPU or GPU:")
     print("1. CPU")
     print("2. GPU")
