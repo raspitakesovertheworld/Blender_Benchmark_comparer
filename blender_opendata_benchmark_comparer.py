@@ -18,14 +18,17 @@ def main():
     print("Select CPU or GPU:")
     print("1. CPU")
     print("2. GPU")
+    print("3. Both")
     input_txt = input("Enter your choice: ")
     if input_txt == "1":
         renderdev = "CPU"
     elif input_txt == "2":
         renderdev = "GPU"
+    elif input_txt == "3":
+        renderdev = "both"
 
     print("   ")
-    print("How many?")
+    print("How many benchmark results would you like?")
     print("1. Top 10")
     print("2. Top 50")
     print("3. Top 100")
@@ -84,6 +87,22 @@ def main():
                             sublist.append(element["data"][0]["stats"]["total_render_time"])
                             list_pre.append(sublist)
                             sublist=[]
+
+                except KeyError:
+                    error_count += 1
+
+        elif renderdev == "both":
+            # both CPU and GPU
+            for element in reader:
+                try:
+                    if element["data"][0]["scene"]["label"] == "pavillon_barcelona":
+
+                        # adding it to the list
+                        sublist.append(element["data"][0]["device_info"]["compute_devices"][0]["name"])
+                        sublist.append(element["data"][0]["device_info"]["device_type"])
+                        sublist.append(element["data"][0]["stats"]["total_render_time"])
+                        list_pre.append(sublist)
+                        sublist = []
 
                 except KeyError:
                     error_count += 1
